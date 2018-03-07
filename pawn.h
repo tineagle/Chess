@@ -9,6 +9,7 @@ struct Pawn final : public Piece {
 
   std::vector<Move> getMoves() override;
   char getChar() override;
+  static char getChar(eColor color);
 };
 
 #endif /* end of include guard: CHESS_PAWN_H */

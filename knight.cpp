@@ -4,13 +4,12 @@ Knight::Knight(eColor color) : Piece(color) {
 }
 
 Piece* Knight::makeKnight(char c) {
-  switch (c) {
-    case 'N':
-      return new Knight(WHITE);
-    case 'n':
-      return new Knight(BLACK);
-    default:
-      return nullptr;
+  if(c == getChar(WHITE)) {
+    return new Knight(WHITE);
+  } else if(c == getChar(BLACK)) {
+    return new Knight(BLACK);
+  } else {
+    return nullptr;
   }
 }
 
@@ -28,7 +27,11 @@ std::vector<Move> Knight::getMoves() {
 }
 
 char Knight::getChar() {
-  switch (color) {
+  return getChar(color);
+}
+
+char Knight::getChar(eColor color) {
+  switch(color) {
     case WHITE:
       return 'N';
     case BLACK:

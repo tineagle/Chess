@@ -4,13 +4,12 @@ King::King(eColor color) : Piece(color) {
 }
 
 Piece* King::makeKing(char c) {
-  switch (c) {
-    case 'K':
-      return new King(WHITE);
-    case 'k':
-      return new King(BLACK);
-    default:
-      return nullptr;
+  if(c == getChar(WHITE)) {
+    return new King(WHITE);
+  } else if(c == getChar(BLACK)) {
+    return new King(BLACK);
+  } else {
+    return nullptr;
   }
 }
 
@@ -28,7 +27,11 @@ std::vector<Move> King::getMoves() {
 }
 
 char King::getChar() {
-  switch (color) {
+  return getChar(color);
+}
+
+char King::getChar(eColor color) {
+  switch(color) {
     case WHITE:
       return 'K';
     case BLACK:

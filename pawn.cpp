@@ -4,13 +4,12 @@ Pawn::Pawn(eColor color) : Piece(color) {
 }
 
 Piece* Pawn::makePawn(char c) {
-  switch (c) {
-    case 'P':
-      return new Pawn(WHITE);
-    case 'p':
-      return new Pawn(BLACK);
-    default:
-      return nullptr;
+  if(c == getChar(WHITE)) {
+    return new Pawn(WHITE);
+  } else if(c == getChar(BLACK)) {
+    return new Pawn(BLACK);
+  } else {
+    return nullptr;
   }
 }
 
@@ -36,7 +35,11 @@ std::vector<Move> Pawn::getMoves() {
 }
 
 char Pawn::getChar() {
-  switch (color) {
+  return getChar(color);
+}
+
+char Pawn::getChar(eColor color) {
+  switch(color) {
     case WHITE:
       return 'P';
     case BLACK:

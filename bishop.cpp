@@ -4,13 +4,12 @@ Bishop::Bishop(eColor color) : Piece(color) {
 }
 
 Piece* Bishop::makeBishop(char c) {
-  switch (c) {
-    case 'B':
-      return new Bishop(WHITE);
-    case 'b':
-      return new Bishop(BLACK);
-    default:
-      return nullptr;
+  if(c == getChar(WHITE)) {
+    return new Bishop(WHITE);
+  } else if(c == getChar(BLACK)) {
+    return new Bishop(BLACK);
+  } else {
+    return nullptr;
   }
 }
 
@@ -24,7 +23,11 @@ std::vector<Move> Bishop::getMoves() {
 }
 
 char Bishop::getChar() {
-  switch (color) {
+  return getChar(color);
+}
+
+char Bishop::getChar(eColor color) {
+  switch(color) {
     case WHITE:
       return 'B';
     case BLACK:

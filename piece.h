@@ -3,6 +3,11 @@
 
 #include <vector>
 
+#define UP +
+#define DOWN -
+#define LEFT -
+#define RIGHT +
+
 struct Move {
   enum eMoveStyle {
     MOVE_SINGLE,
@@ -14,11 +19,6 @@ struct Move {
     RULE_CAPTURE,
     RULE_BOTH
   };
-
-#define UP +
-#define DOWN -
-#define LEFT -
-#define RIGHT +
 
   int dRow, dColumn;
   eMoveStyle moveStyle;

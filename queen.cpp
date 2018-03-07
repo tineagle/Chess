@@ -4,13 +4,12 @@ Queen::Queen(eColor color) : Piece(color) {
 }
 
 Piece* Queen::makeQueen(char c) {
-  switch (c) {
-    case 'Q':
-      return new Queen(WHITE);
-    case 'q':
-      return new Queen(BLACK);
-    default:
-      return nullptr;
+  if(c == getChar(WHITE)) {
+    return new Queen(WHITE);
+  } else if(c == getChar(BLACK)) {
+    return new Queen(BLACK);
+  } else {
+    return nullptr;
   }
 }
 
@@ -28,7 +27,11 @@ std::vector<Move> Queen::getMoves() {
 }
 
 char Queen::getChar() {
-  switch (color) {
+  return getChar(color);
+}
+
+char Queen::getChar(eColor color) {
+  switch(color) {
     case WHITE:
       return 'Q';
     case BLACK:
