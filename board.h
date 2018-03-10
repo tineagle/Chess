@@ -15,7 +15,6 @@ struct Board {
     void setPiece(size_t row, size_t column, Piece *piece);
 
     void print();
-
 };
 
 #endif /* end of include guard: CHESS_BOARD_H */

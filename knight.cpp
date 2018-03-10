@@ -3,7 +3,7 @@
 Knight::Knight(eColor color) : Piece(color) {
 }
 
-Piece* Knight::makeKnight(char c) {
+Piece* Knight::makePiece(char c) {
   if(c == getChar(WHITE)) {
     return new Knight(WHITE);
   } else if(c == getChar(BLACK)) {
@@ -14,16 +14,17 @@ Piece* Knight::makeKnight(char c) {
 }
 
 std::vector<Move> Knight::getMoves() {
-  return {
-    Move(UP 2, LEFT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(UP 2, RIGHT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(DOWN 2, LEFT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(DOWN 2, RIGHT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(UP 1, LEFT 2, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(DOWN 1, LEFT 2, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(UP 1, RIGHT 2, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(DOWN 1, RIGHT 2, Move::MOVE_SINGLE, Move::RULE_BOTH),
+  static auto moves = {
+    Move("UUL", Move::RULE_BOTH),
+    Move("UUR", Move::RULE_BOTH),
+    Move("DDL", Move::RULE_BOTH),
+    Move("DDR", Move::RULE_BOTH),
+    Move("LLU", Move::RULE_BOTH),
+    Move("LLD", Move::RULE_BOTH),
+    Move("RRU", Move::RULE_BOTH),
+    Move("RRD", Move::RULE_BOTH),
   };
+  return moves;
 }
 
 char Knight::getChar() {

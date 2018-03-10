@@ -3,7 +3,7 @@
 Pawn::Pawn(eColor color) : Piece(color) {
 }
 
-Piece* Pawn::makePawn(char c) {
+Piece* Pawn::makePiece(char c) {
   if(c == getChar(WHITE)) {
     return new Pawn(WHITE);
   } else if(c == getChar(BLACK)) {
@@ -14,23 +14,28 @@ Piece* Pawn::makePawn(char c) {
 }
 
 std::vector<Move> Pawn::getMoves() {
+  static auto whiteMoves = {
+    Move("U", Move::RULE_EMPTY),
+    Move("UL", Move::RULE_CAPTURE),
+    Move("UR", Move::RULE_CAPTURE),
+    // Move("UU", Move::RULE_EMPTY), // Double if not moved
+    // Move("UL", Move::RULE_CAPTURE), // En passant
+    // Move("UR", Move::RULE_CAPTURE), // En passant
+  };
+  static auto blackMoves = {
+    Move("D", Move::RULE_EMPTY),
+    Move("DL", Move::RULE_CAPTURE),
+    Move("DR", Move::RULE_CAPTURE),
+    // Move("DD", Move::RULE_EMPTY), // Double if not moved
+    // Move("DL", Move::RULE_CAPTURE), // En passant
+    // Move("DR", Move::RULE_CAPTURE), // En passant
+  };
+
   switch(color) {
     case WHITE:
-      return {
-        Move(UP 1, 0, Move::MOVE_SINGLE, Move::RULE_EMPTY),
-        Move(UP 1, LEFT 1, Move::MOVE_SINGLE, Move::RULE_CAPTURE),
-        Move(UP 1, RIGHT 1, Move::MOVE_SINGLE, Move::RULE_CAPTURE),
-        // Move(UP 2, Left 1, Move::SINGLE, Move::RULE_CAPTURE),
-        // Move(Up 2, Right 1, Move::SINGLE, Move::RULE_CAPTURE),
-      };
+      return whiteMoves;
     case BLACK:
-      return {
-        Move(DOWN 1, 0, Move::MOVE_SINGLE, Move::RULE_EMPTY),
-        Move(DOWN 1, LEFT 1, Move::MOVE_SINGLE, Move::RULE_CAPTURE),
-        Move(DOWN 1, RIGHT 1, Move::MOVE_SINGLE, Move::RULE_CAPTURE),
-        // Move(DOWN 2, LEFT 1, Move::MOVE_SINGLE, Move::RULE_CAPTURE),
-        // Move(DOWN 2, RIGHT 1, Move::SINGLE, Move::RULE_CAPTURE),
-      };
+      return blackMoves;
   }
 }
 

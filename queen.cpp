@@ -3,7 +3,7 @@
 Queen::Queen(eColor color) : Piece(color) {
 }
 
-Piece* Queen::makeQueen(char c) {
+Piece* Queen::makePiece(char c) {
   if(c == getChar(WHITE)) {
     return new Queen(WHITE);
   } else if(c == getChar(BLACK)) {
@@ -14,16 +14,17 @@ Piece* Queen::makeQueen(char c) {
 }
 
 std::vector<Move> Queen::getMoves() {
-  return {
-    Move(UP 1, 0, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(DOWN 1, 0, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(0, LEFT 1, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(0, RIGHT 1, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(UP 1, LEFT 1, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(UP 1, RIGHT 1, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(DOWN 1, LEFT 1, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(DOWN 1, RIGHT 1, Move::MOVE_VECTOR, Move::RULE_BOTH),
+  static auto moves = {
+    Move("U...", Move::RULE_BOTH),
+    Move("D...", Move::RULE_BOTH),
+    Move("L...", Move::RULE_BOTH),
+    Move("R...", Move::RULE_BOTH),
+    Move("UL...", Move::RULE_BOTH),
+    Move("UR...", Move::RULE_BOTH),
+    Move("DL...", Move::RULE_BOTH),
+    Move("DR...", Move::RULE_BOTH),
   };
+  return moves;
 }
 
 char Queen::getChar() {

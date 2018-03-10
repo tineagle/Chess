@@ -3,7 +3,7 @@
 King::King(eColor color) : Piece(color) {
 }
 
-Piece* King::makeKing(char c) {
+Piece* King::makePiece(char c) {
   if(c == getChar(WHITE)) {
     return new King(WHITE);
   } else if(c == getChar(BLACK)) {
@@ -14,16 +14,17 @@ Piece* King::makeKing(char c) {
 }
 
 std::vector<Move> King::getMoves() {
-  return {
-    Move(UP 1, 0, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(DOWN 1, 0, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(0, LEFT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(0, RIGHT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(UP 1, LEFT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(UP 1, RIGHT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(DOWN 1, LEFT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
-    Move(DOWN 1, RIGHT 1, Move::MOVE_SINGLE, Move::RULE_BOTH),
+  static auto moves = {
+    Move("U", Move::RULE_BOTH),
+    Move("D", Move::RULE_BOTH),
+    Move("L", Move::RULE_BOTH),
+    Move("R", Move::RULE_BOTH),
+    Move("UL", Move::RULE_BOTH),
+    Move("UR", Move::RULE_BOTH),
+    Move("DL", Move::RULE_BOTH),
+    Move("DR", Move::RULE_BOTH),
   };
+  return moves;
 }
 
 char King::getChar() {

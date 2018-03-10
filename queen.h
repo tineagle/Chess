@@ -5,7 +5,7 @@
 
 struct Queen final : public Piece {
   Queen(eColor color);
-  static Piece* makeQueen(char c);
+  static Piece* makePiece(char c);
 
   std::vector<Move> getMoves() override;
   char getChar() override;

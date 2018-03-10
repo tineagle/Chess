@@ -5,11 +5,12 @@
 
 struct Bishop final : public Piece {
   Bishop(eColor color);
-  static Piece* makeBishop(char c);
+
+  static Piece* makePiece(char c);
+  static char getChar(eColor color);
 
   std::vector<Move> getMoves() override;
   char getChar() override;
-  static char getChar(eColor color);
 };
 
 #endif /* end of include guard: CHESS_BISHOP_H */

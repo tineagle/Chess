@@ -5,7 +5,7 @@
 
 struct Rook final : public Piece {
   Rook(eColor color);
-  static Piece* makeRook(char c);
+  static Piece* makePiece(char c);
 
   std::vector<Move> getMoves() override;
   char getChar() override;

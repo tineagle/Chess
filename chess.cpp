@@ -1,3 +1,4 @@
+#include "chess.h"
 #include "piece.h"
 #include "pawn.h"
 #include "bishop.h"
@@ -10,21 +11,20 @@
 #include <iostream>
 #include <algorithm>
 
-Piece* getPiece(char c) {
+
+Piece* Chess::makePiece(char c) {
   auto factories = {
-    Pawn::makePawn,
-    Bishop::makeBishop,
-    Rook::makeRook,
-    Knight::makeKnight,
-    King::makeKing,
-    Queen::makeQueen,
+    Pawn::makePiece,
+    Bishop::makePiece,
+    Rook::makePiece,
+    Knight::makePiece,
+    King::makePiece,
+    Queen::makePiece,
   };
 
   Piece *piece = nullptr;
   for(auto factory : factories) {
-    piece = factory(c);
-    if(piece)
-      break;
+    piece = (piece == nullptr) ? factory(c) : piece;
   }
   return piece;
 }
@@ -46,14 +46,15 @@ Board makeBoard() {
   std::transform(css.rbegin(), css.rend(), pss.begin(),
     [](std::array<char, 8> cs) -> std::array<Piece*, 8> {
       std::array<Piece*, 8> ps;
-      std::transform(cs.begin(), cs.end(), ps.begin(), getPiece);
+      std::transform(cs.begin(), cs.end(), ps.begin(), Chess::makePiece);
       return ps;
   });
-  return pss;
+  return Board(pss);
 }
 
 int main() {
     Board board = makeBoard();
     board.print();
+    system("pause");
     return 0;
 }

@@ -2,11 +2,7 @@
 #define CHESS_PIECE_H
 
 #include <vector>
-
-#define UP +
-#define DOWN -
-#define LEFT -
-#define RIGHT +
+#include <string>
 
 struct Move {
   enum eMoveStyle {
@@ -24,15 +20,15 @@ struct Move {
   eMoveStyle moveStyle;
   eMoveRule moveRule;
 
+  Move(std::string moveString, eMoveRule moveRule);
   Move(int dRow, int dColumn, eMoveStyle moveStyle, eMoveRule moveRule);
 };
 
-enum eColor {
-  WHITE,
-  BLACK
-};
-
 struct Piece {
+  enum eColor {
+    WHITE,
+    BLACK
+  };
 
   eColor color;
 

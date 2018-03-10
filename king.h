@@ -5,7 +5,7 @@
 
 struct King final : public Piece {
   King(eColor color);
-  static Piece* makeKing(char c);
+  static Piece* makePiece(char c);
 
   std::vector<Move> getMoves() override;
   char getChar() override;

@@ -5,7 +5,7 @@
 
 struct Knight final : public Piece {
   Knight(eColor color);
-  static Piece* makeKnight(char c);
+  static Piece* makePiece(char c);
 
   std::vector<Move> getMoves() override;
   char getChar() override;

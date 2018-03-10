@@ -3,7 +3,7 @@
 Rook::Rook(eColor color) : Piece(color) {
 }
 
-Piece* Rook::makeRook(char c) {
+Piece* Rook::makePiece(char c) {
   if(c == getChar(WHITE)) {
     return new Rook(WHITE);
   } else if(c == getChar(BLACK)) {
@@ -14,12 +14,13 @@ Piece* Rook::makeRook(char c) {
 }
 
 std::vector<Move> Rook::getMoves() {
-  return {
-    Move(UP 1, 0, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(DOWN 1, 0, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(0, LEFT 1, Move::MOVE_VECTOR, Move::RULE_BOTH),
-    Move(0, RIGHT 1, Move::MOVE_VECTOR, Move::RULE_BOTH),
+  static auto moves = {
+    Move("U...", Move::RULE_BOTH),
+    Move("D...", Move::RULE_BOTH),
+    Move("L...", Move::RULE_BOTH),
+    Move("R...", Move::RULE_BOTH),
   };
+  return moves;
 }
 
 char Rook::getChar() {
@@ -29,8 +30,8 @@ char Rook::getChar() {
 char Rook::getChar(eColor color) {
   switch(color) {
     case WHITE:
-      return 'B';
+      return 'R';
     case BLACK:
-      return 'b';
+      return 'r';
   }
 }
